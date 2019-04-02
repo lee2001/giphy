@@ -3,16 +3,18 @@
 //****************** SERIOUSLY TEST USING console.log()!!! ******************
 /* global $ */
 
-$("#search-button").click(function(){
+$("#search-button").click(function() {
+
     var searchTerm = $("#search-term").val();
     console.log(searchTerm);
-   $.ajax({
-        url: "https://api.giphy.com/v1/gifs/search?q="+ searchTerm +"&rating=pg&api_key=dc6zaTOxFJmzC",
+    $.ajax({
+        url: "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&rating=pg&api_key=dc6zaTOxFJmzC",
         method: "GET",
         success: function(response) {
-         $('body').append('<img src="' + response.data[0].images.original.url + '">');
+            var randomNum = Math.floor(Math.random()*(response.data.length));
+            $('.text-center').html('<img src="' + response.data[randomNum].images.original.url + '">');
 
-  },
+        },
     });
 
 });
